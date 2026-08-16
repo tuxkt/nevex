@@ -311,6 +311,7 @@ erisebilir; User mode'dan erisim load/store fault'a donusur (bkz. §8.2).
 | 0xF040   | MMIO_CHAR_Y                         | R/W | Bir sonraki karakterin y konumu                       |
 | 0xF044   | MMIO_CHAR_COLOR                     | R/W | Bir sonraki karakterin rengi (RGB332)                  |
 | 0xF048   | MMIO_CHAR_DRAW                      | W   | Yazilan ASCII karakteri framebuffer'a "basar", cursor'u ilerletir |
+| 0xF04C   | MMIO_STDIN                          | R   | stdin'den bir sonraki byte'i okur; veri kalmadiysa (EOF) `0xFFFFFFFF` doner |
 
 `MMIO_CHAR_*`, gercek eski donanimlardaki "karakter ureteci" (character generator) cipslerinin
 (Apple II, C64 vb.) basitlestirilmis bir benzeri: yazilim sadece ASCII kodu yaziyor, glyph'i

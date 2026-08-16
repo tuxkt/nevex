@@ -543,6 +543,7 @@ static void seed_builtin_symbols(void) {
     add_label("MMIO_CHAR_Y", NEVEX_MMIO_CHAR_Y - NEVEX_MMIO_BASE);
     add_label("MMIO_CHAR_COLOR", NEVEX_MMIO_CHAR_COLOR - NEVEX_MMIO_BASE);
     add_label("MMIO_CHAR_DRAW", NEVEX_MMIO_CHAR_DRAW - NEVEX_MMIO_BASE);
+    add_label("MMIO_STDIN", NEVEX_MMIO_STDIN - NEVEX_MMIO_BASE);
 
     add_label("CAUSE_ILLEGAL_INSTR", CAUSE_ILLEGAL_INSTR);
     add_label("CAUSE_LOAD_FAULT", CAUSE_LOAD_FAULT);

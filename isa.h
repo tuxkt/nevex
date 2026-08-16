@@ -78,6 +78,7 @@ enum {
 #define NEVEX_MMIO_CHAR_Y     0xF040u
 #define NEVEX_MMIO_CHAR_COLOR 0xF044u
 #define NEVEX_MMIO_CHAR_DRAW  0xF048u
+#define NEVEX_MMIO_STDIN      0xF04Cu
 
 #define NEVEX_FB_BASE    0x10000u
 #define NEVEX_FB_WIDTH   128
@@ -110,7 +111,7 @@ static inline uint32_t nevex_enc_r(uint8_t op, uint8_t rd, uint8_t rs1, uint8_t 
            ((uint32_t)rd    << 22) |
            ((uint32_t)rs1   << 18) |
            ((uint32_t)rs2   << 14) |
-           ((uint32_t)funct << 7);
+           ((uint32_t)funct << 8);
 }
 
 static inline uint32_t nevex_enc_i(uint8_t op, uint8_t rd, uint8_t rs1, int32_t imm) {

@@ -166,6 +166,10 @@ static uint32_t mmio_read(CPU *cpu, uint32_t addr) {
         case NEVEX_MMIO_CHAR_X:    return cpu->char_x;
         case NEVEX_MMIO_CHAR_Y:    return cpu->char_y;
         case NEVEX_MMIO_CHAR_COLOR: return cpu->char_color;
+        case NEVEX_MMIO_STDIN: {
+            int c = getchar();
+            return (c == EOF) ? 0xFFFFFFFFu : (uint32_t)(unsigned char)c;
+        }
         default:
             take_trap(cpu, CAUSE_LOAD_FAULT, cpu->cur_instr_pc);
             return 0;
@@ -647,7 +651,7 @@ int main(int argc, char **argv) {
 
     if (argc > 1) {
         size_t n = load_binary_file(argv[1]);
-        printf("[nevex] '%s' yuklendi (%zu byte)\n", argv[1], n);
+        fprintf(stderr, "[nevex] '%s' yuklendi (%zu byte)\n", argv[1], n);
     } else {
         uint32_t prog[64];
         int count = 0;
@@ -661,7 +665,7 @@ int main(int argc, char **argv) {
         for (int k = 0; msg[k]; k++) mem_store8(&cpu, msg_addr + (uint32_t)k, (uint8_t)msg[k]);
         mem_store8(&cpu, msg_addr + (uint32_t)strlen(msg), 0);
 
-        printf("[nevex] gomulu demo program yuklendi\n");
+        fprintf(stderr, "[nevex] gomulu demo program yuklendi\n");
     }
 
 #ifdef NEVEX_GUI
@@ -682,7 +686,7 @@ int main(int argc, char **argv) {
 #endif
     }
 
-    printf("[nevex] program sonlandi, exit code = %d\n", cpu.exit_code);
+    fprintf(stderr, "[nevex] program sonlandi, exit code = %d\n", cpu.exit_code);
 
     if (fb_dirty) dump_framebuffer_ppm("nevex_fb.ppm");
 
