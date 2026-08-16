@@ -1,0 +1,18 @@
+# Derlenmiş binary'ler
+nevex
+nevexas
+
+# Framebuffer çıktıları / debug artifact'leri
+*.ppm
+nevex_fb.png
+
+# Build ara dosyaları
+*.o
+*.obj
+*.out
+
+# Editor/OS artifact'leri
+.vscode/
+.idea/
+*.swp
+.DS_Store
